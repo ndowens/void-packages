@@ -1,0 +1,30 @@
+# Template file for 'dissenter-browser'
+pkgname=dissenter-browser
+version=1.5.114
+revision=1
+build_style=fetch
+short_desc="Browser"
+maintainer="Nathan Owens <ndowens@artixlinux.org>"
+license="GPL-3.0-or-later"
+homepage="https://dissenter.com"
+distfiles="https://github.com/gab-ai-inc/defiant-browser/releases/download/v${version}/${pkgname}_${version}_amd64.deb
+ https://aur.archlinux.org/cgit/aur.git/plain/dissenter-browser-bin.sh?h=dissenter-browser-bin>dissenter-browser.sh"
+checksum="1b7315d4f675dabf8874a918f1c16f9e695733851903ace5428b512e62156b36
+ f5b134a4b02abea812f15dc355551f8817a462057dc8c23cb04b0029aba5505b"
+
+do_extract() {
+	ar p ${XBPS_SRCDISTDIR}/${pkgname}-${version}/${pkgname}_${version}_amd64.deb \
+		data.tar.xz | bsdtar -x -f -
+}
+
+do_install() {
+	vmkdir usr
+	vmkdir etc
+	vmkdir opt
+	vcopy ${wrksrc}/usr/* usr
+	vcopy ${wrksrc}/etc/* etc
+	vcopy ${wrksrc}/opt/* opt
+
+	install -Dm755 ${XBPS_SRCDISTDIR}/${pkgname}-${version}/dissenter-browser.sh \
+		/usr/bin/dissenter-browser
+}
