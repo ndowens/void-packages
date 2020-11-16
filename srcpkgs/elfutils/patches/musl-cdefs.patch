@@ -1,8 +1,19 @@
---- libelf/elf.h	2015-08-21 14:22:37.000000000 +0200
-+++ libelf/elf.h	2015-11-20 04:54:33.948081321 +0100
-@@ -21,6 +21,17 @@
- 
- #include <features.h>
+From 3642241d7c77a6fee8068cf81dc44a604fb4216a Mon Sep 17 00:00:00 2001
+From: Nathan Owens <ndowens@artixlinux.org>
+Date: Mon, 16 Nov 2020 15:43:09 -0600
+Subject: [PATCH] musl-cdefs
+
+---
+ libelf/elf.h | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git libelf/elf.h libelf/elf.h
+index 6439c1a..23cea49 100644
+--- libelf/elf.h
++++ libelf/elf.h
+@@ -19,6 +19,16 @@
+ #ifndef _ELF_H
+ #define	_ELF_H 1
  
 +#if !defined(__BEGIN_DECLS)
 +/* C++ needs to know that types and declarations are C, not C++.  */
@@ -14,17 +25,9 @@
 +# define __END_DECLS
 +#endif
 +#endif
-+
- __BEGIN_DECLS
- 
  /* Standard ELF types.  */
---- lib/fixedsizehash.h.orig
-+++ lib/fixedsizehash.h
-@@ -30,7 +30,6 @@
- #include <errno.h>
- #include <stdlib.h>
- #include <string.h>
--#include <sys/cdefs.h>
  
- #include <system.h>
- 
+ #include <stdint.h>
+-- 
+2.29.2
+
