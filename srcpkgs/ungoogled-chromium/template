@@ -1,0 +1,25 @@
+# Template file for 'ungoogled-chromium'
+pkgname=ungoogled-chromium
+version=87.0.4280.88
+revision=1
+wrksrc="${pkgname}_${version}-1.1_linux"
+build_style=gnu-makefile
+hostmakedepends="tar xz"
+depends="desktop-file-utils"
+short_desc="Ungoogled chromium browser"
+maintainer="Nathan Owens <ndowens@artixlinux.org>"
+license="BSD-3-Clause"
+homepage="https://ungoogled-software.github.io"
+distfiles="https://github.com/mcstrugs/ungoogled-chromium-binaries/releases/download/${version}-1.1/ungoogled-chromium_${version}-1.1_linux.tar.xz"
+checksum=76604aff59111b3cdfc2c84c00909fcf78fa77115bfe80a4075bba2c40aac446
+
+do_build() {
+	:
+}
+
+do_install() {
+	vmkdir opt/ungoogled-chromium
+	vmkdir usr/bin
+	cp -rp * ${DESTDIR}/opt/ungoogled-chromium
+	ln -srf ${DESTDIR}/opt/ungoogled-chromium/chrome ${DESTDIR}/usr/bin/chrome
+}
