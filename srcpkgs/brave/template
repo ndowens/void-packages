@@ -1,6 +1,6 @@
 # Template file for 'brave'
 pkgname=brave
-version=1.19.62
+version=1.19.64
 revision=1
 build_style=fetch
 hostmakedepends="binutils tar xz"
@@ -9,9 +9,9 @@ short_desc="Brave browser"
 maintainer="Nathan Owens <ndowens@artixlinux.org>"
 license="MPL2"
 homepage="https://brave.com"
-_sourcename="brave-browser-beta_${version}_amd64.deb"
+_sourcename="brave-browser-dev_${version}_amd64.deb"
 distfiles="https://github.com/brave/brave-browser/releases/download/v${version}/${_sourcename}"
-checksum=fa160bb47ed7736e8b1df1bccadfb3a024be5ed342b3294d87de44c0a495c915
+checksum=9f0080ad085a0f8d30c448694fd123e7b3d80e1c7c0072443ea4d4c12f0ca767
 
 do_extract() {
 	ar -x ${XBPS_SRCDISTDIR}/${pkgname}-${version}/${_sourcename}
@@ -28,7 +28,7 @@ do_install() {
 }
 
 post_install() {
-	ln -s ${DESTDIR}/usr/bin/brave-browser-bin ${DESTDIR}/usr/bin/brave
-	cp ${DESTDIR}/opt/brave.com/brave-beta/product_logo_128_beta.png /usr/share/icons/brave-browser-beta.png \
-		${DESTDIR}/usr/share/icons/brave-browser-beta.png
+	mv ${DESTDIR}/usr/bin/brave-browser* ${DESTDIR}/usr/bin/brave
+	install -Dm644 ${DESTDIR}/opt/brave.com/brave-dev/product_logo_128_dev.png \
+		${DESTDIR}/usr/share/icons/brave-browser.png
 }
