@@ -1,7 +1,7 @@
 # Template file for 'openntpd'
 pkgname=openntpd
-version=6.2p3
-revision=7
+version=6.8p1
+revision=1
 build_style=gnu-configure
 configure_args="--with-privsep-user=${pkgname} --with-cacert=/etc/ssl/certs.pem"
 hostmakedepends="automake libtool"
@@ -12,7 +12,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="ISC"
 homepage="http://openntpd.org/"
 distfiles="http://ftp.openbsd.org/pub/OpenBSD/OpenNTPD/${pkgname}-${version}.tar.gz"
-checksum=7b02691524197e01ba6b1b4b7595b33956e657ba6d5c4cf2fc20ea3f4914c13a
+checksum=8582db838a399153d4a17f2a76518b638cc3020f58028575bf54127518f55a46
 
 conf_files="/etc/ntpd.conf"
 provides="ntp-daemon-0_1"
@@ -30,10 +30,10 @@ pre_configure() {
 post_install() {
 	# Rename files for alternatives.
 	mv ${DESTDIR}/usr/bin/{ntpd,$pkgname}
-	mv ${DESTDIR}/usr/share/man/man8/{ntpd,openntpd}.8
+	mv ${DESTDIR}/usr/share/man/man8/{ntpd,$pkgname}.8
 	# Use a symlink instead.
 	rm ${DESTDIR}/usr/bin/ntpctl
-	ln -s openntpd ${DESTDIR}/usr/bin/ntpctl
+	ln -s $pkgname ${DESTDIR}/usr/bin/ntpctl
 	vsv $pkgname
 	vlicense COPYING
 }

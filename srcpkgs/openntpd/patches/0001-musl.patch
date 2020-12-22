@@ -1,0 +1,43 @@
+From 76fcafa979efb965bd15b700df32f71d0edc0039 Mon Sep 17 00:00:00 2001
+From: Nathan Owens <ndowens@artixlinux.org>
+Date: Tue, 22 Dec 2020 12:25:28 -0600
+Subject: [PATCH] musl
+
+---
+ src/log.c  | 4 ++++
+ src/ntpd.h | 4 ++++
+ 2 files changed, 8 insertions(+)
+
+diff --git src/log.c src/log.c
+index 56fd38c..1012896 100644
+--- src/log.c
++++ src/log.c
+@@ -25,6 +25,10 @@
+ #include <time.h>
+ #include "log.h"
+ 
++#if !defined(HAVE_ATTRIBUTE__DEAD) && !defined(__dead)
++#define __dead          __attribute__((__noreturn__))
++#endif
++
+ static int	 dest;
+ static int	 verbose;
+ const char	*log_procname;
+diff --git src/ntpd.h src/ntpd.h
+index ced81b9..c0364ba 100644
+--- src/ntpd.h
++++ src/ntpd.h
+@@ -34,6 +34,10 @@
+ #include "ntp.h"
+ #include "log.h"
+ 
++#if !defined(HAVE_ATTRIBUTE__DEAD) && !defined(__dead)
++#define __dead          __attribute__((__noreturn__))
++#endif
++
+ #define MAXIMUM(a, b)	((a) > (b) ? (a) : (b))
+ 
+ #ifndef NTPD_USER
+-- 
+2.29.2
+
