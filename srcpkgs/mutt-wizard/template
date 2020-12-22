@@ -1,0 +1,12 @@
+# Template file for 'mutt-wizard'
+pkgname=mutt-wizard
+version=1.0.0
+revision=1
+build_style=gnu-makefile
+depends="neomutt isync msmtp pass"
+short_desc="Mutt wizard"
+maintainer="Nathan Owens <ndowens@artixlinux.org>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/ndowens/mutt-wizard"
+distfiles="${homepage}/archive/${version}.tar.gz"
+checksum=6b070f9a3383bca6f1559b983b6adf3ea43d786b455a8c8f5c9b0d9fa0586070
